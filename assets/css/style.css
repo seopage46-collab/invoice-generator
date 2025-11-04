@@ -23,7 +23,7 @@
       left: 50%;
       width: 280px;
       height: 280px;
-      background: url("img/water-mark.png") center center / contain no-repeat;
+      background: url("../img/water-mark.png") center center / contain no-repeat;
       opacity: 1;
       transform: translate(-50%, -50%);
       pointer-events: none;

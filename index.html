@@ -130,7 +130,7 @@
 
           <div class="row">
             <div class="col-6">
-              <div style="background-color: #20275F;" class="pb-2 pt-3 px-3 my-3 text-light"><h6>Payment Method</h6></div>
+              <div style="background-color: #20275F;" class="p-3 my-3 text-light fw-bold">Payment Method</div>
               <p id="selectedPaymentMethod"></p>
               <p id="paymentMethod"></p>
             </div>
@@ -139,9 +139,29 @@
                 <p><strong>Subtotal:</strong> <span id="subtotal">0.00</span> <span id="curSubtotal"></span></p>
                 <p id="tax-result"><strong>Tax:</strong> <span id="taxAmount">0.00</span> <span id="curTax"></span></p>
                 <p id="discount-result"><strong>Discount:</strong> <span id="discountAmount">0.00</span> <span id="curDiscount"></span></p>
-                <p><strong>Grand Total:</strong> <span id="grandTotal">0.00</span> <span id="curGrand"></span></p>
                 <p><strong>Advance Paid:</strong> <span id="advanceTotal">0.00</span> <span id="curAdvance"></span></p>
-                <h5 class="p-3"><strong>Amount Due:</strong> <span id="dueTotal">0.00</span> <span id="curDue"></span></h5>
+                <p><strong>Amount Due:</strong> <span id="dueTotal">0.00</span> <span id="curDue"></span></h5>
+                <div style="background-color: #20275F;" class="px-3 pb-1 pt-3 my-3 text-light fw-bold"><strong>Grand Total:</strong> <span id="grandTotal">0.00</span> <span id="curGrand"></span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <div class="text-primary">Term and Conditions :</div>
+              <ul class="text-muted">
+                <li>Due payment should be paid within 15 days of invoice date. Late payments may incur fees.</li>
+                <li>Must deposit 50% of total bill in advance. Deposits are non-refundable; cancellations billed for work completed.</li>
+                <li>Any further revisions or additional work will be billed separately.</li>
+                <li>Deliverables remain property of CML until full payment is received.</li>
+              </ul>
+            </div>
+
+            <div class="col-6 d-flex justify-content-center align-items-end">
+              <div class="w-100">
+                <div class="w-100 text-center"><img class="w-50 mx-auto d-block thumbnail" src="assets/img/signature.png" alt="Signature"></div>
+                <div class="border border-2"></div>
+                <div class="w-100 text-center text-muted">Signature</div>
               </div>
             </div>
           </div>
