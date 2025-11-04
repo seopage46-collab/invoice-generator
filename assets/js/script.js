@@ -29,7 +29,7 @@
     const displayClientAddress=document.getElementById("displayClientAddress");
     const invoiceDate=document.getElementById("invoiceDate");
     const invoiceNumber=document.getElementById("invoiceNumber");
-    const downloadBtn=document.getElementById("downloadBtn");
+    const downloadBtn=document.getElementById("downloadBtn");     
 
     function addItem(){
       itemsContainer.insertAdjacentHTML("beforeend",`
