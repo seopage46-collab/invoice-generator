@@ -1,0 +1,45 @@
+  body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f8f9fa;
+      color: #000;
+      transition: all 0.3s ease;
+    }
+    .invoice-box {
+      position: relative;
+      width: 210mm;
+      min-height: calc(297mm - 40mm);
+      background: #fff;
+      padding: 20mm;
+      border-radius: 10px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .invoice-box::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 280px;
+      height: 280px;
+      background: url("img/water-mark.png") center center / contain no-repeat;
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .invoice-box > * {
+      position: relative;
+      z-index: 1;
+    }
+    .invoice-box.pdf-export {
+      box-shadow: none;
+      margin: 0 auto;
+    }
+    .invoice-box table {
+      background-color: transparent !important;
+    }
+    table th {
+      background: var(--primary, #0d6efd);
+      color: #fff;
+    }
