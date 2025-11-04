@@ -1,5 +1,4 @@
     
-    // All your same variables and logic...
     const companyNameInput=document.getElementById("companyName");
     const companyAddressInput=document.getElementById("companyAddress");
     const clientNameInput=document.getElementById("clientName");
@@ -7,7 +6,17 @@
     const clientPhoneInput=document.getElementById("clientPhone");
     const clientAddressInput=document.getElementById("clientAddress");
     const taxInput=document.getElementById("tax");
+    const taxResult=document.getElementById( 'tax-result' );
     const discountInput=document.getElementById("discount");
+    const discountResult=document.getElementById( "discount-result" );
+    const methodTypeSelect=document.getElementById("select-method");
+    const methodSelectMap={
+      "mobile-banking":document.getElementById("method1"),
+      "bank-transfer":document.getElementById("method2"),
+      "cash":document.getElementById("method3")
+    };
+    const paymentMethodEl=document.getElementById("paymentMethod");
+    const selectedMethodEl=document.getElementById("selectedPaymentMethod");
     const currencySelect=document.getElementById("currency");
     const itemsContainer=document.getElementById("itemsContainer");
     const invoiceContainer=document.getElementById("invoice");
@@ -41,6 +50,51 @@
           </div>
         </div>`);
     }
+
+    function updateMethodVisibility(){
+      const selectedType=methodTypeSelect?.value||"mobile-banking";
+      Object.entries(methodSelectMap).forEach(([type,selectEl])=>{
+        if(!selectEl){return;}
+        if(type===selectedType){
+          selectEl.classList.remove("d-none");
+        }else{
+          selectEl.classList.add("d-none");
+        }
+      });
+      const methodText=getSelectedMethodText();
+      if(paymentMethodEl){
+        paymentMethodEl.textContent=methodText;
+      }
+      if(selectedMethodEl){
+        const label=methodTypeSelect?.selectedIndex>=0?methodTypeSelect.options[methodTypeSelect.selectedIndex].text:"";
+        selectedMethodEl.textContent=label?`${label}`:"";
+      }
+    }
+
+    function getSelectedMethodText(){
+      const selectedType=methodTypeSelect?.value||"mobile-banking";
+      const activeSelect=methodSelectMap[selectedType]||methodSelectMap["mobile-banking"];
+      if(!activeSelect||!activeSelect.options||activeSelect.options.length===0){
+        return "";
+      }
+      const idx=activeSelect.selectedIndex>=0?activeSelect.selectedIndex:0;
+      return activeSelect.options[idx]?.text||"";
+    }
+
+    methodTypeSelect?.addEventListener("change",updateMethodVisibility);
+    Object.values(methodSelectMap).forEach(selectEl=>{
+      selectEl?.addEventListener("change",()=>{
+        const methodText=getSelectedMethodText();
+        if(paymentMethodEl){
+          paymentMethodEl.textContent=methodText;
+        }
+        if(selectedMethodEl){
+          const label=methodTypeSelect?.selectedIndex>=0?methodTypeSelect.options[methodTypeSelect.selectedIndex].text:"";
+          selectedMethodEl.textContent=label?`${label}`:"";
+        }
+      });
+    });
+    updateMethodVisibility();
 
     function generateInvoice(){
       const currency=currencySelect.value;
@@ -77,7 +131,20 @@
       invoiceNumber.textContent=invoNum;
       subtotalEl.textContent=subtotal.toFixed(2);
       taxAmountEl.textContent=tax.toFixed(2);
+      if(tax>0){
+        taxResult.style.display="";
+      }else{
+        taxResult.style.display="none";
+      }
+      if(paymentMethodEl){
+        paymentMethodEl.textContent=getSelectedMethodText();
+      }
       discountAmountEl.textContent=discount.toFixed(2);
+      if(discount>0){
+        discountResult.style.display="";
+      }else{
+        discountResult.style.display="none";
+      }
       grandTotalEl.textContent=grand.toFixed(2);
       advanceTotalEl.textContent=advance.toFixed(2);
       dueTotalEl.textContent=due.toFixed(2);
@@ -86,7 +153,7 @@
       downloadBtn.classList.remove("d-none");
     }
 
-    // 🔥 Header/Footer/Watermark PDF Generator
+    // Header/Footer/Watermark PDF Generator
     const loadImage=src=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src;});
     async function downloadPDF(){
         const { jsPDF } = window.jspdf;
