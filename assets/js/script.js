@@ -1,4 +1,3 @@
-    
     const companyNameInput=document.getElementById("companyName");
     const companyAddressInput=document.getElementById("companyAddress");
     const clientNameInput=document.getElementById("clientName");
